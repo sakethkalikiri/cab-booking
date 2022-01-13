@@ -20,7 +20,6 @@ import com.project.cabbooking.dao.DriverDAO;
 import com.project.cabbooking.dao.WalletDAO;
 import com.project.cabbooking.dto.DriverDTO;
 import com.project.cabbooking.dto.DriverEarningsDTO;
-import com.project.cabbooking.dto.LocationDTO;
 import com.project.cabbooking.model.Driver;
 import com.project.cabbooking.service.DriverService;
 
@@ -95,18 +94,10 @@ public class DriverController {
 
 	}
 
-	@PutMapping("/location/{driverId}")
-	public ResponseEntity<HttpStatus> updateLocation(@PathVariable("driverId") int driverId,
-			@RequestBody LocationDTO locationDTO) {
-
-		driverService.updateLocation(driverId, locationDTO);
-		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
-	}
-
 	@PutMapping("/status/{driverId}")
 	public ResponseEntity<HttpStatus> updateStatus(@PathVariable("driverId") int driverId,
 			@RequestParam("isAvailable") boolean isAvailable) {
-
+		driverService.updateStatus(driverId, isAvailable);
 		return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
 	}
 

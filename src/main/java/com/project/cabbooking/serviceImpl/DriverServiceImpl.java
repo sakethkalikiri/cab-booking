@@ -8,7 +8,6 @@ import org.springframework.util.ObjectUtils;
 
 import com.project.cabbooking.dao.DriverDAO;
 import com.project.cabbooking.dto.DriverDTO;
-import com.project.cabbooking.dto.LocationDTO;
 import com.project.cabbooking.exception.DriverAlreadyExistsException;
 import com.project.cabbooking.exception.DriverNotFoundException;
 import com.project.cabbooking.model.Driver;
@@ -95,20 +94,6 @@ public class DriverServiceImpl implements DriverService {
 			driverDAO.deleteById(driver.getDriverId());
 		} else {
 			throw new DriverNotFoundException("Driver with given ID not found");
-		}
-	}
-
-	@Override
-	public void updateLocation(int driverId, LocationDTO locationDTO) {
-
-		Driver driver = driverDAO.findByDriverId(driverId);
-
-		if (!ObjectUtils.isEmpty(driver)) {
-			Location location = modelMapper.map(driver.getLocation(), Location.class);
-			driver.setLocation(location);
-			driverDAO.save(driver);
-		} else {
-			throw new DriverNotFoundException("Driver with ID: " + driverId + " not found");
 		}
 	}
 
