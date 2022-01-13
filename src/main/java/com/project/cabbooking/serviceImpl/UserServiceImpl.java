@@ -134,14 +134,17 @@ public class UserServiceImpl implements UserService {
 			ride.setUser(user);
 			updateUserLocation(userId, rideDTO.getSourceLocation());
 			modelMapper.map(rideDTO.getDestinationLocation(), ride.getDestinationLocation());
+			ride.getDestinationLocation().setXCoordinate(rideDTO.getDestinationLocation().getXCoordinate());
+			ride.getDestinationLocation().setYCoordinate(rideDTO.getDestinationLocation().getYCoordinate());
 			rideDAO.save(ride);
 		} else {
 			ride = new Ride();
 			ride.setUser(user);
 			updateUserLocation(userId, rideDTO.getSourceLocation());
-			Location location = modelMapper.map(rideDTO.getDestinationLocation(), Location.class);
+			Location location = new Location();
+			location.setXCoordinate(rideDTO.getDestinationLocation().getXCoordinate());
+			location.setYCoordinate(rideDTO.getDestinationLocation().getYCoordinate());
 			ride.setDestinationLocation(location);
-			ride.setDestinationLocation(null);
 			rideDAO.save(ride);
 		}
 
@@ -228,8 +231,6 @@ public class UserServiceImpl implements UserService {
 		wallet.setBill(total);
 
 		walletDAO.save(wallet);
-
-		rideDAO.deleteById(ride.getRideId());
 
 		return Long.toString(total);
 	}
