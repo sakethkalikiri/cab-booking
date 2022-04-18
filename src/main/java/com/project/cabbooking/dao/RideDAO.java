@@ -14,4 +14,7 @@ public interface RideDAO extends JpaRepository<Ride, Integer> {
 	@Query("select r from Ride r where r.user.userId = :userId")
 	public Ride findByUserId(@Param("userId") int userId);
 
+	@Query("delete from Ride r where r.rideId = :rideId")
+	public void deleteRide(@Param("rideId") int rideId);
+
 }

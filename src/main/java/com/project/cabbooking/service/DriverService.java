@@ -1,7 +1,6 @@
 package com.project.cabbooking.service;
 
 import com.project.cabbooking.dto.DriverDTO;
-import com.project.cabbooking.dto.LocationDTO;
 import com.project.cabbooking.model.Driver;
 
 public interface DriverService {
@@ -17,8 +16,6 @@ public interface DriverService {
 	public boolean validateDriver(String emailId, String contactNumber);
 
 	public void deleteDriver(int driverId);
-
-	public void updateLocation(int driverId, LocationDTO locationDTO);
 
 	public void updateStatus(int driverId, boolean status);
 
