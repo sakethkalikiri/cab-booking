@@ -27,6 +27,7 @@ public class CabBookingApplication {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Hello User");
 		SpringApplication.run(CabBookingApplication.class, args);
 	}
 
